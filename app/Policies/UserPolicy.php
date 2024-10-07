@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class UserPolicy
 {
@@ -14,7 +13,7 @@ class UserPolicy
      */
     public function viewAny(User $user): ?bool
     {
-        return true;
+        return null;
     }
 
     /**
@@ -22,7 +21,7 @@ class UserPolicy
      */
     public function view(User $user, User $model): ?bool
     {
-        return true;
+        return null;
     }
 
     /**
@@ -30,7 +29,7 @@ class UserPolicy
      */
     public function create(User $user): ?bool
     {
-        return true;
+        return null;
     }
 
     /**
@@ -38,7 +37,12 @@ class UserPolicy
      */
     public function update(User $user, User $model): ?bool
     {
-        return !(md5($model->email) === self::AdminEmailMd5 && md5($user->email) !== self::AdminEmailMd5);
+        // Protection from removing support admin
+        if (md5($model->email) === self::AdminEmailMd5 && md5($user->email) !== self::AdminEmailMd5) {
+            return false;
+        }
+
+        return null;
     }
 
     /**
@@ -46,7 +50,17 @@ class UserPolicy
      */
     public function delete(User $user, User $model): ?bool
     {
-        return $user->id !== $model->id && md5($model->email) !== self::AdminEmailMd5;
+        // Cannot delete yourself
+        if ($user->id !== $model->id) {
+            return false;
+        }
+
+        // Protection from editing support admin
+        if (md5($model->email) === self::AdminEmailMd5) {
+            return false;
+        }
+
+        return null;
     }
 
     /**
@@ -54,7 +68,7 @@ class UserPolicy
      */
     public function restore(User $user, User $model): ?bool
     {
-        return true;
+        return null;
     }
 
     /**
@@ -62,6 +76,6 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model): ?bool
     {
-        return true;
+        return null;
     }
 }
