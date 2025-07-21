@@ -1,26 +1,83 @@
 version: 2
 updates:
+  # GH Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    allow:
+      - dependency-type: "all"
+        update-type: "version-update:semver-minor"
+      - dependency-type: "all"
+        update-type: "version-update:semver-patch"
     groups:
-      gh-actions:
+      gh-actions-minor-patch:
         patterns:
           - "*"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    allow:
+      - dependency-type: "all"
+        update-type: "version-update:semver-major"
+    groups:
+      gh-actions-major:
+        patterns:
+          - "*"
+
+  # Composer
   - package-ecosystem: "composer"
     directory: "/"
     schedule:
       interval: "weekly"
+    allow:
+      - dependency-type: "all"
+        update-type: "version-update:semver-minor"
+      - dependency-type: "all"
+        update-type: "version-update:semver-patch"
     groups:
-      composer-dependencies:
+      composer-minor-patch:
         patterns:
           - "*"
+
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    allow:
+      - dependency-type: "all"
+        update-type: "version-update:semver-major"
+    groups:
+      composer-major:
+        patterns:
+          - "*"
+
+  # NPM
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
+    allow:
+      - dependency-type: "all"
+        update-type: "version-update:semver-minor"
+      - dependency-type: "all"
+        update-type: "version-update:semver-patch"
     groups:
-      npm-dependencies:
+      npm-minor-patch:
         patterns:
           - "*"
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    allow:
+      - dependency-type: "all"
+        update-type: "version-update:semver-major"
+    groups:
+      npm-major:
+        patterns:
+          - "*"
+
