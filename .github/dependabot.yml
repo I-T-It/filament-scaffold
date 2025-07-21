@@ -22,10 +22,6 @@ updates:
     allow:
       - dependency-type: "all"
         update-type: "version-update:semver-major"
-    groups:
-      gh-actions-major:
-        patterns:
-          - "*"
 
   # Composer
   - package-ecosystem: "composer"
@@ -49,10 +45,6 @@ updates:
     allow:
       - dependency-type: "all"
         update-type: "version-update:semver-major"
-    groups:
-      composer-major:
-        patterns:
-          - "*"
 
   # NPM
   - package-ecosystem: "npm"
@@ -76,8 +68,4 @@ updates:
     allow:
       - dependency-type: "all"
         update-type: "version-update:semver-major"
-    groups:
-      npm-major:
-        patterns:
-          - "*"
 
