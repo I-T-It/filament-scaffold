@@ -3,6 +3,7 @@ updates:
   # GH Actions
   - package-ecosystem: "github-actions"
     directory: "/"
+    open-pull-requests-limit: 25
     schedule:
       interval: "weekly"
     groups:
@@ -16,6 +17,7 @@ updates:
   # Composer
   - package-ecosystem: "composer"
     directory: "/"
+    open-pull-requests-limit: 25
     schedule:
       interval: "weekly"
     groups:
@@ -29,6 +31,7 @@ updates:
   # NPM
   - package-ecosystem: "npm"
     directory: "/"
+    open-pull-requests-limit: 25
     schedule:
       interval: "weekly"
     groups:
